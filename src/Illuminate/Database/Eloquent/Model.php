@@ -91,6 +91,13 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     protected $withCount = [];
 
     /**
+     * The relationship existence that should be eager loaded on every query.
+     *
+     * @var array
+     */
+    protected $withExists = [];
+
+    /**
      * Indicates whether lazy loading will be prevented on this model.
      *
      * @var bool
@@ -1569,7 +1576,8 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     {
         return $this->newModelQuery()
             ->with($this->with)
-            ->withCount($this->withCount);
+            ->withCount($this->withCount)
+            ->withExists($this->withExists);
     }
 
     /**
